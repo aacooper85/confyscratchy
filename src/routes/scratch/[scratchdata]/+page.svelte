@@ -3,8 +3,8 @@
 	export let data;
 </script>
 
-<h1>Confidence Card</h1>
+<h1>Scratch Card</h1>
 
 <p>Data String From URL: {data.datastring}</p>
 
-<p>~Confidence Card Form Components Go Here~</p>
+<p>~Scratch Card Form Components Go Here~</p>
