@@ -1,32 +1,24 @@
-<script>
-	/** @type {import('./$types').PageData} */
-	export let data;
-	
-	let cardId = data.cardId;
-	let encodedData = btoa(cardId);
-	let confUrl = `/confidence/${encodedData}`;
-
-	function newCardId() {
-		cardId = crypto.randomUUID();
-		encodedData = btoa(cardId);
-		confUrl = `/confidence/${encodedData}`;
-	}
-
+<script lang="ts">
+    import { Card } from "$lib/types/Card";
 	import { QRCodeImage } from "svelte-qrcode-image";
+
+	let card: Card = new Card("My Card", "Card Description");
 </script>
 
 <h1>Design A New Card</h1>
 
-<h4><a href={confUrl}>Confidence URL</a></h4>
-
-<QRCodeImage text={confUrl} />
+<form>
+	<label for="title">Title:</label>
+    <input type="text" id="title" name="title" required bind:value={card.title}>
+<br><br>
+	<label for="description">Description:</label>
+    <input type="textarea" id="description" name="description" required bind:value={card.description}>
+</form>
 
 <br>
-<button on:click={newCardId}>
-	Generate New Id
-</button>
+<hr>
 
-<p>Card ID: {cardId.substring(0, 6)}</p>
-<p>Encoded ID: {encodedData}</p>
+<h3>Share Your Card</h3>
 
-<p>~Card Design Components Go Here~</p>
+<a href={card.url()}><QRCodeImage text={card.url()} margin={2} altText="QR Code for Confidence Card URL"/></a>
+<p><a href={card.url()}>{card.url()}</a></p>
