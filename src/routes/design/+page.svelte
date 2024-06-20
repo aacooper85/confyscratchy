@@ -1,5 +1,6 @@
 <script lang="ts">
-    import { Card } from "$lib/types/Card";
+	import Row from "$lib/components/confidence/design/Row.svelte";
+	import { Card } from "$lib/types/confidence/Card";
 	import { QRCodeImage } from "svelte-qrcode-image";
 
 	let card: Card = new Card(); // includes default title and description
@@ -13,10 +14,16 @@
 <br><br>
 	<label for="description">Description:</label>
     <input type="textarea" id="description" name="description" required bind:value={card.description}>
+<br><br>
+	{#each card.rows as row, index}
+		<Row bind:row={row} label={`${(index+1)}.`}></Row>
+	{/each}
 </form>
 
 <br>
 <hr>
+
+<!-- TO DO make the Share section a Collapsible element -->
 
 <h3>Share Your Card</h3>
 

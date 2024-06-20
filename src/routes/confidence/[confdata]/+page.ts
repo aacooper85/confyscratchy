@@ -1,6 +1,6 @@
 /** @type {import('./$types').PageLoad} */
 export function load({ params }) {
     return {
-        datastring: params.confdata
+        base64string: params.confdata
     };
 }
