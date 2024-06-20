@@ -2,7 +2,7 @@
     import { Card } from "$lib/types/Card";
 	import { QRCodeImage } from "svelte-qrcode-image";
 
-	let card: Card = new Card("My Card", "Card Description");
+	let card: Card = new Card(); // includes default title and description
 </script>
 
 <h1>Design A New Card</h1>
@@ -20,5 +20,5 @@
 
 <h3>Share Your Card</h3>
 
-<a href={card.url()}><QRCodeImage text={card.url()} margin={2} altText="QR Code for Confidence Card URL"/></a>
-<p><a href={card.url()}>{card.url()}</a></p>
+<a href={card.url()} target="_blank"><QRCodeImage text={card.url()} margin={2} altText="QR Code for Confidence Card URL"/></a>
+<p><a href={card.url()} target="_blank">{card.url()}</a></p>

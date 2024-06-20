@@ -1,10 +1,12 @@
 <script lang="ts">
+    import { Card } from "$lib/types/Card";
+
 	/** @type {import('./$types').PageData} */
 	export let data;
+
+	let card: Card = Card.fromBase64(data.datastring);
 </script>
 
-<h1>Confidence Card</h1>
+<h2>{card.title}</h2>
 
-<p>Data String From URL: {data.datastring}</p>
-
-<p>~Confidence Card Form Components Go Here~</p>
+<p>{card.description}</p>

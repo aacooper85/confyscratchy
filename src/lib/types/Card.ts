@@ -2,7 +2,7 @@ export class Card {
     title: string;
     description: string;
 
-    constructor(title: string, description: string) {
+    constructor(title: string = 'My Card', description: string = 'Card Description') {
         this.title = title,
         this.description = description
     }
@@ -20,5 +20,10 @@ export class Card {
             title: this.title,
             description: this.description
         });
+    }
+
+    static fromBase64(base64string: string) {
+        const parsedObject = JSON.parse(atob(base64string));
+        return new this(parsedObject.title, parsedObject.description);
     }
 }
