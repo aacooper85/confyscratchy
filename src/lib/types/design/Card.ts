@@ -1,9 +1,9 @@
-import { ConfidenceRow } from "./Row";
+import { DesignRow } from "./Row";
 
-export class ConfidenceCard {
+export class DesignCard {
     title: string;
     description: string;
-    rows: ConfidenceRow[];
+    rows: DesignRow[];
 
     constructor(title: string = 'My Card', description: string = 'Card Description', rowArray?: number[][]) {
         this.title = title,
@@ -27,19 +27,19 @@ export class ConfidenceCard {
         });
     }
 
-    static fromBase64(base64string: string) {
-        const parsedObject = JSON.parse(atob(base64string));
-        return new this(parsedObject.title, parsedObject.description, parsedObject.rows);
-    }
+    // static fromBase64(base64string: string) {
+    //     const parsedObject = JSON.parse(atob(base64string));
+    //     return new this(parsedObject.title, parsedObject.description, parsedObject.rows);
+    // }
 
     parseArray(rowArray: number[][]) {
-        return rowArray.map(pair => new ConfidenceRow(pair[0], pair[1]));
+        return rowArray.map(pair => new DesignRow(pair[0], pair[1]));
     }
 
     defaultRows() {
-        var defaultRows: ConfidenceRow[] = [];
+        var defaultRows: DesignRow[] = [];
         for (var i = 0; i < 5; i++) {
-            defaultRows.push(new ConfidenceRow());
+            defaultRows.push(new DesignRow());
         }
         return defaultRows;
     }

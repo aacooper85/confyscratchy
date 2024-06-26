@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Row from "$lib/components/confidence/design/Row.svelte";
-	import { Card } from "$lib/types/confidence/Card";
+	import DesignRow from "$lib/components/design/Row.svelte";
+	import { DesignCard } from "$lib/types/design/Card";
 	import { QRCodeImage } from "svelte-qrcode-image";
 
-	let card: Card = new Card(); // includes default title and description
+	let card: DesignCard = new DesignCard(); // includes default title and description
 </script>
 
 <h1>Design A New Card</h1>
@@ -16,7 +16,7 @@
     <input type="textarea" id="description" name="description" required bind:value={card.description}>
 <br><br>
 	{#each card.rows as row, index}
-		<Row bind:row={row} label={`${(index+1)}.`}></Row>
+		<DesignRow bind:row={row} label={`${(index+1)}.`}></DesignRow>
 	{/each}
 </form>
 
