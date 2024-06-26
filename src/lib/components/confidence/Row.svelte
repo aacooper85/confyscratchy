@@ -5,16 +5,20 @@
     export let row: ConfidenceRow;
 </script>
 
-<p><b>{label}</b>
-{#each Array(row.length) as _,i}
-    <ConfidenceInput index={i} total={row.length} bind:value={row.input[i]} ></ConfidenceInput>
-{/each}
-{#if (row.sum() > row.length)}
-    <b>{row.sum()}/{row.length} 🔺</b>
-{:else if (row.sum() == row.length)}
-    {row.sum()}/{row.length} ✅
-{:else}
-    <i>{row.sum()}/{row.length}</i> 🔽
-{/if}
-<br>
-</p>
+<div class="row w-75">
+    <div class="col">
+        <b>{label}</b>
+    </div>
+    {#each Array(row.length) as _,i}
+        <ConfidenceInput index={i} total={row.length} bind:value={row.input[i]} ></ConfidenceInput>
+    {/each}
+    <div class="col">
+        {#if (row.sum() > row.length)}
+            <b>{row.sum()}/{row.length} 🔺</b>
+        {:else if (row.sum() == row.length)}
+            {row.sum()}/{row.length} ✅
+        {:else}
+            <i>{row.sum()}/{row.length}</i> 🔽
+        {/if}
+    </div>
+</div>
