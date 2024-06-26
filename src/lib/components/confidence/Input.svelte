@@ -5,4 +5,4 @@
 </script>
 
 <b>{String.fromCharCode(97 + index).toUpperCase()}:</b>
-<input type="number" min="0" max={total} bind:value={value}/>
+<input class="form-control-sm" type="number" min="0" max={total} bind:value={value}/>

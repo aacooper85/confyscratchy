@@ -27,6 +27,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@sveltestrap/sveltestrap": "^6.2.7",
 		"svelte-qrcode-image": "^1.0.0-rc.2"
 	}
 }
