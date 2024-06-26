@@ -1,18 +1,18 @@
 import { ConfidenceRow } from "./Row";
 
-export class Card {
+export class ConfidenceCard {
     title: string;
     description: string;
     rows: ConfidenceRow[];
 
-    constructor(title: string = 'My Card', description: string = 'Card Description', rowArray?: number[][]) {
+    constructor(title: string = 'My Card', description: string = 'Card Description', rowArray: number[][]) {
         this.title = title,
         this.description = description,
-        this.rows = rowArray ? this.parseArray(rowArray) : this.defaultRows();
+        this.rows = this.parseArray(rowArray);
     }
 
-    url() {
-        return `/confidence/${this.base64()}`;
+    scratchUrl() {
+        return `/scratch/${this.base64()}`;
     }
 
     base64() {
@@ -34,13 +34,5 @@ export class Card {
 
     parseArray(rowArray: number[][]) {
         return rowArray.map(pair => new ConfidenceRow(pair[0], pair[1]));
-    }
-
-    defaultRows() {
-        var defaultRows: ConfidenceRow[] = [];
-        for (var i = 0; i < 5; i++) {
-            defaultRows.push(new ConfidenceRow());
-        }
-        return defaultRows;
     }
 }

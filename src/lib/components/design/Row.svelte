@@ -1,8 +1,8 @@
 <script lang="ts">
     import ConfidenceButton from "./Button.svelte";
-    import { ConfidenceRow } from "$lib/types/confidence/Row";
+    import { DesignRow } from "$lib/types/design/Row";
     export let label: string;
-    export let row: ConfidenceRow;
+    export let row: DesignRow;
 
     let answerChoice = (index: number) => () => {
         row.answer = index;
