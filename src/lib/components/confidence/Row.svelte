@@ -7,7 +7,14 @@
 
 <p><b>{label}</b>
 {#each Array(row.length) as _,i}
-    <ConfidenceInput total={row.length} value={0} ></ConfidenceInput>
+    <ConfidenceInput total={row.length} bind:value={row.input[i]} ></ConfidenceInput>
 {/each}
+{#if (row.sum() > row.length)}
+<b>{row.sum()}/{row.length} 🔺</b>
+{:else if (row.sum() == row.length)}
+{row.sum()}/{row.length} ✅
+{:else}
+<i>{row.sum()}/{row.length}</i> 🔽
+{/if}
 <br>
 </p>

@@ -3,4 +3,4 @@
     export let value: number;
 </script>
 
-<input type="number" min="0" max={total} value={value}/>
+<input type="number" min="0" max={total} bind:value={value}/>
