@@ -16,4 +16,5 @@
 	{#each card.rows as row, index}
 		<ConfidenceRow bind:row={row} label={`${(index+1)}.`}></ConfidenceRow>
 	{/each}
+	<button>This Button Does Nothing</button>
 </form>

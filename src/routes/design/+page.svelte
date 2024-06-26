@@ -27,5 +27,5 @@
 
 <h3>Share Your Card</h3>
 
-<a href={card.url()} target="_blank"><QRCodeImage text={card.url()} margin={2} altText="QR Code for Confidence Card URL"/></a>
-<p><a href={card.url()} target="_blank">{card.url()}</a></p>
+<a href={card.confidenceUrl()} target="_blank"><QRCodeImage text={card.confidenceUrl()} margin={2} altText="QR Code for Confidence Card URL"/></a>
+<p><a href={card.confidenceUrl()} target="_blank">{card.confidenceUrl()}</a></p>
