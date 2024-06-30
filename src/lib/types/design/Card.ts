@@ -34,4 +34,12 @@ export class DesignCard {
         }
         return defaultRows;
     }
+	
+	addRow() {
+        this.rows = [...this.rows, new DesignRow(5,0)]
+    }
+	
+  removeRow() {
+        this.rows = this.rows.slice(0,this.rows.length-1)
+    }
 }
