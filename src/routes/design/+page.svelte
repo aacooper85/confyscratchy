@@ -4,6 +4,13 @@
 	import { QRCodeImage } from "svelte-qrcode-image";
 
 	let card: DesignCard = new DesignCard(); // includes default title and description
+	
+	let addRow = () => {
+		card.addRow(); card=card;
+	}
+	let removeRow = () => {
+		card.removeRow(); card=card;
+	}
 </script>
 
 <h1>Design A New Card</h1>
@@ -19,6 +26,7 @@
 		<DesignRow bind:row={row} label={`${(index+1)}.`}></DesignRow>
 	{/each}
 </form>
+	<button on:click={addRow}>Add a Question</button> <button on:click={removeRow}> Remove a Question</button>
 
 <br>
 <hr>
