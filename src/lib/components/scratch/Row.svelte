@@ -8,13 +8,13 @@
 	
 	export let Answer = (index:number) =>{
 		return row.answer===index;}
-		
+	export let scratchlist = new Array<boolean>;
+	
 </script>
 
 <p><b>{label}</b>
 	{#each Array(row.length) as _,i}
-		<Button correct={Answer(i)} buttonlabel={String.fromCharCode(97 + i).toUpperCase()}> </Button>
+		<Button correct={Answer(i)} buttonlabel={String.fromCharCode(97 + i).toUpperCase()} bind:scratched={scratchlist[i]}> </Button>
 	{/each}
-	{row.scratches.size}
 <br>
 </p>

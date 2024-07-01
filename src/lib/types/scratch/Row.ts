@@ -44,8 +44,8 @@ export class ScratchChoice{
 	
 	constructor(scratched:boolean=false,correct:boolean=false,buttonlabel:String="?"){
 		this.scratched = scratched;
-		this.correct=correct;
-		this.buttonlabel=buttonlabel;
+		this.correct = correct;
+		this.buttonlabel = buttonlabel;
 	}
 	
 	scratch(){
