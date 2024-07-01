@@ -11,10 +11,6 @@ export class ScratchCard {
         this.rows = this.parseArray(rowArray);
     }
 	
-	scratchUrl() {
-        return `/scratch/${this.base64()}`;
-    }
-
     base64() {
         return btoa(this.json());
     }
@@ -37,7 +33,7 @@ export class ScratchCard {
     }
 	
 	score() {
-        return this.rows.reduce((total:number, row:Row) => total + (row.score() || 0), 0);
+        return this.rows.reduce((total:number, row:ScratchRow) => total + (row.score() || 0), 0);
     }
 	
 }
