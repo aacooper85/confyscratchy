@@ -23,7 +23,6 @@
 		else {return 0;}
 		}
 	
-
 </script>
 
 <p><b>{label}</b>

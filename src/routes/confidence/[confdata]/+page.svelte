@@ -19,7 +19,15 @@
 	for (let i =0; i<card.rows.length;i++){
 		valid[i]=false;
 		}
-	
+	let Scratch = new Array;
+	for (let i=0; i<card.rows.length;i++){
+		let row=card.rows[i];
+		let thisrow = new Array<boolean>;
+		for (let j=0;j<row.length;j++){
+			thisrow[j]= false;
+			}
+		Scratch[i]=thisrow;
+		}
 	
 </script>
 
@@ -43,9 +51,20 @@
 	<form>
 		{#each card.rows as row, index}
 			<b>{`${(index+1)}.`}</b>
-				{#each row.input as entry,index}
-					<input type = "number" value={entry} min="0" max={row.length} readonly/>
-				{/each}
+				{#if (Scratch[index][row.answer]) }
+					{#each row.input as entry,i}
+						{#if (row.answer === i)}
+						<b> <input type = "number" value={entry} min="0" max={row.length} style="font-weight: bold;" readonly/></b>
+						{:else}
+						<input type = "number" value={entry} min="0" max={row.length} readonly/>
+						{/if}
+					{/each}
+					score:<b>{row.input[row.answer]}/{row.length}</b>
+				{:else }
+					{#each row.input as entry,i}
+						<input type = "number" value={entry} min="0" max={row.length} readonly/>
+					{/each}
+				{/if}
 			<br>
 		{/each}
 	</form>
@@ -53,7 +72,7 @@
 	<h3>Your Team scratchcard:</h3>
 	<form>
 		{#each card.rows as row, index}
-			<ScratchRow label={`${(index+1)}.`} bind:row={row}  ></ScratchRow>
+			<ScratchRow label={`${(index+1)}.`} bind:row={row}  bind:scratchlist={Scratch[index]}></ScratchRow>
 		{/each}
 	</form>
 {/if}

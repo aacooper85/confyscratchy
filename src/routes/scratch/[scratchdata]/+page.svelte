@@ -23,4 +23,5 @@
 	{#each card.rows as row, index}
 		<ScratchRow label={`${(index+1)}.`} bind:row={row} bind:scratchlist={scratcharray[index]} ></ScratchRow>
 	{/each}
+	<button>This Button Does Nothing</button>
 </form>
