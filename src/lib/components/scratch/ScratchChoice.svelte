@@ -15,9 +15,9 @@
 		Button=Button;
 		scratched=true;
 		if (Button.correct){
-			glyph = "✓";
+			glyph = "✅";
 			} else {
-			glyph = "✗";
+			glyph = "🚫";
 			}
 		}
 	
