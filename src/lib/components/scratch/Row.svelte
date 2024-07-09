@@ -1,34 +1,46 @@
 <script lang="ts">
+
+
     import { ScratchRow } from "$lib/types/scratch/Row";
 	import { ScratchChoice } from "$lib/types/scratch/Row";
+	import {ConfidenceRow} from "$lib/types/confidence/Row";
 	import Button from "$lib/components/scratch/ScratchChoice.svelte";
+
 	
-	export let row: ScratchRow;
+	
+	export let crow = ConfidenceRow;
 	export let label = String;
+	export let row=crow.castToScratchRow();
+	
 	
 	export let Answer = (index:number) =>{
 		return row.answer===index;}
-	export let scratchlist = new Array<boolean>;
+	let revealrow=false;
 	
-	export let truecount = (list:Array)=>{
-		let sum=0;
-		list.forEach(entry => {if(entry) {sum += 1}});
-		return sum;}
-	
-	export let score = (list:Array) =>{
-		if(list[row.answer]){
-			if(row.length - 2*(truecount(list)-1)>0){
-			return row.length - 2*(truecount(list)-1);}
-			else {return 0;}}
-		else {return 0;}
+	let Scratch = (index:number) => () => {
+		row.scratch(index); 
+		if(row.scratches[row.answer]){
+			revealrow=true;
 		}
+		console.log("Scratched"+index);
+		row=row;
+		console.log(revealrow);
+    }
+ 
+
 	
 </script>
 
 <p><b>{label}</b>
+	{#if revealrow}
+		{#each Array(row.length) as _,i}
+			<Button correct={Answer(i)} revealed={revealrow} buttonlabel={String.fromCharCode(97 + i).toUpperCase()} > </Button>
+		{/each}
+	{:else}
 	{#each Array(row.length) as _,i}
-		<Button correct={Answer(i)} buttonlabel={String.fromCharCode(97 + i).toUpperCase()} bind:scratched={scratchlist[i]}> </Button>
+		<Button correct={Answer(i)} revealed={row.scratches[i]} buttonlabel={String.fromCharCode(97 + i).toUpperCase()} on:Scratch={Scratch(i)}> </Button>
 	{/each}
-	score:<b>{score(scratchlist)}/{row.length}</b>
+	{/if}
+	score:<b>{row.score()}/{row.length}</b> 
 <br>
 </p>

@@ -4,12 +4,14 @@
 	import scratch from "$lib/components/scratch/Row.svelte";
 	import { ScratchCard } from "$lib/types/scratch/Card";
 	import ScratchRow from "$lib/components/scratch/Row.svelte";
+	import castFromConfRow from "$lib/components/scratch/Row.svelte";
 
 	/** @type {import('./$types').PageData} */
 	export let data;
 
 	let card: ConfidenceCard = ConfidenceCard.fromBase64(data.base64string);
 	export let locked = false;
+	let srow: ScratchRow;
 	
 	export let lock = () =>{
 		let t=true;
@@ -72,7 +74,7 @@
 	<h3>Your Team scratchcard:</h3>
 	<form>
 		{#each card.rows as row, index}
-			<ScratchRow label={`${(index+1)}.`} bind:row={row}  bind:scratchlist={Scratch[index]}></ScratchRow>
+			<ScratchRow label={`${(index+1)}.`} crow={row}></ScratchRow>
 		{/each}
 	</form>
 {/if}
