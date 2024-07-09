@@ -15,7 +15,7 @@
 	
 	export let Answer = (index:number) =>{
 		return row.answer===index;}
-	let revealrow=false;
+	export let revealrow=false;
 	
 	let Scratch = (index:number) => () => {
 		row.scratch(index); 

@@ -18,19 +18,12 @@
 		locked=t;
 	}
 	let valid = new Array<boolean>;
+	let revealed = new Array;
 	for (let i =0; i<card.rows.length;i++){
 		valid[i]=false;
+		revealed[i]=false;
 		}
-	let Scratch = new Array;
-	for (let i=0; i<card.rows.length;i++){
-		let row=card.rows[i];
-		let thisrow = new Array<boolean>;
-		for (let j=0;j<row.length;j++){
-			thisrow[j]= false;
-			}
-		Scratch[i]=thisrow;
-		}
-	
+
 </script>
 
 <h2>{card.title}</h2>
@@ -53,7 +46,7 @@
 	<form>
 		{#each card.rows as row, index}
 			<b>{`${(index+1)}.`}</b>
-				{#if (Scratch[index][row.answer]) }
+				{#if (revealed[index]) }
 					{#each row.input as entry,i}
 						{#if (row.answer === i)}
 						<b> <input type = "number" value={entry} min="0" max={row.length} style="font-weight: bold;" readonly/></b>
@@ -74,7 +67,7 @@
 	<h3>Your Team scratchcard:</h3>
 	<form>
 		{#each card.rows as row, index}
-			<ScratchRow label={`${(index+1)}.`} crow={row}></ScratchRow>
+			<ScratchRow label={`${(index+1)}.`} crow={row} bind:revealrow={revealed[index]}></ScratchRow>
 		{/each}
 	</form>
 {/if}
