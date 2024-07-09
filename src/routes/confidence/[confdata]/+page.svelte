@@ -45,7 +45,7 @@
 	<h3>Your individual confidence report:</h3>
 	<form>
 		{#each card.rows as row, index}
-			<b>{`${(index+1)}.`}</b>
+			<p><b>{`${(index+1)}.`}</b>
 				{#if (revealed[index]) }
 					{#each row.input as entry,i}
 						{#if (row.answer === i)}
@@ -60,7 +60,8 @@
 						<input type = "number" value={entry} min="0" max={row.length} readonly/>
 					{/each}
 				{/if}
-			<br>
+			</p>
+			
 		{/each}
 	</form>
 	
