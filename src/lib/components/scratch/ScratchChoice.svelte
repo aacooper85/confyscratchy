@@ -7,7 +7,7 @@
 	export let buttonlabel = String;
 	export let correct = boolean;
 	export let revealed = boolean;
-	export let scratched = false;
+
 	
 	export let glyph = () =>{
 		if(revealed){
