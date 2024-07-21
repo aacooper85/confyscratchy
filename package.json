@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
-		"build": "vite build --output public",
+		"build": "vite build",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
@@ -12,9 +12,6 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.0.0",
-		"@sveltejs/adapter-node": "^5.2.0",
-		"@sveltejs/adapter-static": "^3.0.2",
-		"@sveltejs/adapter-vercel": "^5.4.1",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
 		"@types/eslint": "^8.56.7",
@@ -30,8 +27,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"svelte-qrcode-image": "^1.0.0-rc.2",
-		"sveltekit-adapter-html-like": "^0.3.2"
+		"svelte-qrcode-image": "^1.0.0-rc.2"
 	}
 }
-
