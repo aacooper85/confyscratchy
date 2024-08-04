@@ -27,5 +27,4 @@
 	<i>{row.sum()}/{row.length}</i> 🔽
 {/if}
 	<br>
-
 	</p>

@@ -4,31 +4,26 @@
 	import scratch from "$lib/components/scratch/Row.svelte";
 	import { ScratchCard } from "$lib/types/scratch/Card";
 	import ScratchRow from "$lib/components/scratch/Row.svelte";
+	import castFromConfRow from "$lib/components/scratch/Row.svelte";
 
 	/** @type {import('./$types').PageData} */
 	export let data;
 
 	let card: ConfidenceCard = ConfidenceCard.fromBase64(data.base64string);
 	export let locked = false;
+	let srow: ScratchRow;
 	
 	export let lock = () =>{
 		let t=true;
 		locked=t;
 	}
 	let valid = new Array<boolean>;
+	let revealed = new Array;
 	for (let i =0; i<card.rows.length;i++){
 		valid[i]=false;
+		revealed[i]=false;
 		}
-	let Scratch = new Array;
-	for (let i=0; i<card.rows.length;i++){
-		let row=card.rows[i];
-		let thisrow = new Array<boolean>;
-		for (let j=0;j<row.length;j++){
-			thisrow[j]= false;
-			}
-		Scratch[i]=thisrow;
-		}
-	
+
 </script>
 
 <h2>{card.title}</h2>
@@ -50,8 +45,8 @@
 	<h3>Your individual confidence report:</h3>
 	<form>
 		{#each card.rows as row, index}
-			<b>{`${(index+1)}.`}</b>
-				{#if (Scratch[index][row.answer]) }
+			<p><b>{`${(index+1)}.`}</b>
+				{#if (revealed[index]) }
 					{#each row.input as entry,i}
 						{#if (row.answer === i)}
 						<b> <input type = "number" value={entry} min="0" max={row.length} style="font-weight: bold;" readonly/></b>
@@ -65,14 +60,15 @@
 						<input type = "number" value={entry} min="0" max={row.length} readonly/>
 					{/each}
 				{/if}
-			<br>
+			</p>
+			
 		{/each}
 	</form>
 	
 	<h3>Your Team scratchcard:</h3>
 	<form>
 		{#each card.rows as row, index}
-			<ScratchRow label={`${(index+1)}.`} bind:row={row}  bind:scratchlist={Scratch[index]}></ScratchRow>
+			<ScratchRow label={`${(index+1)}.`} crow={row} bind:revealrow={revealed[index]}></ScratchRow>
 		{/each}
 	</form>
 {/if}
