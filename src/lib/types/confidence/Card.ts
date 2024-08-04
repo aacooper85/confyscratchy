@@ -7,8 +7,8 @@ export class ConfidenceCard {
 
     constructor(title: string = 'My Card', description: string = 'Card Description', rowArray: number[][]) {
         this.title = title,
-        this.description = description,
-        this.rows = this.parseArray(rowArray);
+            this.description = description,
+            this.rows = this.parseArray(rowArray);
     }
 
     scratchUrl() {
@@ -35,5 +35,5 @@ export class ConfidenceCard {
     parseArray(rowArray: number[][]) {
         return rowArray.map(pair => new ConfidenceRow(pair[0], pair[1]));
     }
-	
+
 }

@@ -20,9 +20,9 @@ export class ConfidenceRow {
     defaultInput(length: number) {
         return Array(length).fill(0);
     }
-	
-	castToScratchRow(){
-		let newrow= new ScratchRow(this.length,this.answer);
-		return newrow;
-	}
+
+    castToScratchRow() {
+        let newrow = new ScratchRow(this.length, this.answer);
+        return newrow;
+    }
 }

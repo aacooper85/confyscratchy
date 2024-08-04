@@ -7,8 +7,8 @@ export class DesignCard {
 
     constructor(title: string = 'My Card', description: string = 'Card Description') {
         this.title = title,
-        this.description = description,
-        this.rows = this.defaultRows();
+            this.description = description,
+            this.rows = this.defaultRows();
     }
 
     confidenceUrl() {
@@ -34,12 +34,12 @@ export class DesignCard {
         }
         return defaultRows;
     }
-	
-	addRow() {
-        this.rows = [...this.rows, new DesignRow(5,0)]
+
+    addRow() {
+        this.rows = [...this.rows, new DesignRow(5, 0)]
     }
-	
-  removeRow() {
-        this.rows = this.rows.slice(0,this.rows.length-1)
+
+    removeRow() {
+        this.rows = this.rows.slice(0, this.rows.length - 1)
     }
 }
