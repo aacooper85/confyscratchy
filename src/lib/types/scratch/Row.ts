@@ -7,11 +7,7 @@ export class ScratchRow {
 	constructor(length: number = 5, answer: number = 0) {
 		this.length = length;
 		this.answer = answer;
-		let scratches = new Array(length);
-		for (let i = 0; i < length; i++) {
-			scratches[i] = false;
-		}
-		this.scratches = scratches;
+		this.scratches = new Array<boolean>(length);
 	}
 
 	scratch(index: number) {

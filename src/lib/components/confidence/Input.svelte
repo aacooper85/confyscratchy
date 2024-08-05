@@ -1,8 +1,10 @@
 <script lang="ts">
+    import { Input } from "@sveltestrap/sveltestrap";
+
     export let index: number;
     export let total: number;
     export let value: number;
 </script>
 
-<b>{String.fromCharCode(97 + index).toUpperCase()}:</b>
-<input type="number" min="0" max={total} bind:value={value}/>
+<strong>{String.fromCharCode(97 + index).toUpperCase()}:</strong>
+<Input type="number" min="0" max={total} bind:value />

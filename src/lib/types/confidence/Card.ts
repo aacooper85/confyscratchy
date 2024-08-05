@@ -35,5 +35,4 @@ export class ConfidenceCard {
     parseArray(rowArray: number[][]) {
         return rowArray.map(pair => new ConfidenceRow(pair[0], pair[1]));
     }
-
 }

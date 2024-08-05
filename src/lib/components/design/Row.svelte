@@ -25,37 +25,17 @@
 <FormGroup>
     <Row>
         <Col class="col-1">
-            <Button
-                outline
-                color="secondary"
-                block
-                class="btn-sm m-1"
-                on:click={addOption()}
-                disabled={row.length >= 26}>More</Button
-            >
+            <Button on:click={addOption()} outline block color="secondary" class="btn-sm m-1" disabled={row.length >= 26}>More</Button>
         </Col>
         <Col class="col-1">
-            <Button
-                outline
-                color="secondary"
-                block
-                class="btn-sm m-1"
-                on:click={removeOption()}
-                disabled={row.length <= 1}>Less</Button
-            >
+            <Button on:click={removeOption()} outline block color="secondary" class="btn-sm m-1" disabled={row.length <=1}>Less</Button>
         </Col>
         <Col class="col-2">
-            <Button disabled block color="dark" class="btn-sm m-1"
-                ><strong>Question {label}</strong></Button
-            >
+            <Button disabled block color="dark" class="btn-sm m-1"><strong>Question {label}</strong></Button>
         </Col>
         <Col class="col-8">
             {#each Array(row.length) as _, i}
-                <ConfidenceChoice
-                    index={i}
-                    answer={row.answer}
-                    on:click={answerChoice(i)}
-                ></ConfidenceChoice>
+                <ConfidenceChoice index={i} answer={row.answer} on:click={answerChoice(i)}></ConfidenceChoice>
             {/each}
         </Col>
     </Row>
