@@ -4,11 +4,9 @@
 	import { QRCodeImage } from "svelte-qrcode-image";
 	import {
 		Button,
-		Card,
 		Col,
 		Container,
 		Form,
-		FormGroup,
 		Input,
 		InputGroup,
 		Label,
