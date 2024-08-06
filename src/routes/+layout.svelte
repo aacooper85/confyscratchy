@@ -5,8 +5,7 @@
 		Navbar,
 		NavItem,
 		NavLink,
-        Container,
-        Card,
+        Container
 	} from "@sveltestrap/sveltestrap";
 </script>
 

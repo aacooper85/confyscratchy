@@ -12,7 +12,7 @@ export class ConfidenceRow {
     }
 
     sum() {
-        var sum = 0;
+        let sum = 0;
         this.input.forEach(entry => sum += entry);
         return sum;
     }
@@ -22,7 +22,6 @@ export class ConfidenceRow {
     }
 
     castToScratchRow() {
-        let newrow = new ScratchRow(this.length, this.answer);
-        return newrow;
+        return new ScratchRow(this.length, this.answer);
     }
 }

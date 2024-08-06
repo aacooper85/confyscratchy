@@ -34,7 +34,7 @@
             <Button disabled block color="dark" class="btn-sm m-1"><strong>Question {label}</strong></Button>
         </Col>
         <Col class="col-8">
-            {#each Array(row.length) as _, i}
+            {#each Array(row.length) as i}
                 <ConfidenceChoice index={i} answer={row.answer} on:click={answerChoice(i)}></ConfidenceChoice>
             {/each}
         </Col>

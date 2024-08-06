@@ -5,7 +5,7 @@
 
 	export let label: string;
 	export let row: ConfidenceRow;
-	export let valid: Boolean;
+	export let valid: boolean;
 
 	let glyph = '';
 
@@ -30,7 +30,7 @@
 	</Col>
 	<Col class="col-9 border-start border-end">
 		<Row>
-			{#each Array(row.length) as _, i}
+			{#each Array(row.length) as i}
 				<ConfidenceInput on:change={validate} index={i} total={row.length} bind:value={row.input[i]}></ConfidenceInput>
 			{/each}
 		</Row>

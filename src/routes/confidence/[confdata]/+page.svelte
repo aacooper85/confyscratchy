@@ -9,13 +9,12 @@
 
 	let card: ConfidenceCard = ConfidenceCard.fromBase64(data.base64string);
 	export let locked = false;
-	let srow: ScratchRow;
 
 	let lock = () => {
 		locked = true;
 	};
 	let valid = new Array<boolean>();
-	let revealed = new Array();
+	let revealed = [];
 	for (let i = 0; i < card.rows.length; i++) {
 		valid[i] = false;
 		revealed[i] = false;
@@ -69,7 +68,7 @@
 					{/each}
 					score:<b>{row.input[row.answer]}/{row.length}</b>
 				{:else}
-					{#each row.input as entry, i}
+					{#each row.input as entry}
 						<input
 							type="number"
 							value={entry}

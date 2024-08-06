@@ -36,21 +36,3 @@ export class ScratchRow {
 		}
 	}
 }
-
-export class ScratchChoice {
-	scratched: boolean;
-	correct: boolean;
-	revealed: boolean;
-	buttonlabel: string;
-
-	constructor(scratched: boolean = false, correct: boolean = false, revealed: boolean = false, buttonlabel: string = "?") {
-		this.scratched = scratched;
-		this.correct = correct;
-		this.revealed = false;
-		this.buttonlabel = buttonlabel;
-	}
-
-	scratch() {
-		this.scratched = true;
-	}
-}

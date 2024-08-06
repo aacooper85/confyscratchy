@@ -6,9 +6,9 @@ export class DesignCard {
     rows: DesignRow[];
 
     constructor(title: string = 'My Card', description: string = 'Card Description') {
-        this.title = title,
-            this.description = description,
-            this.rows = this.defaultRows();
+        this.title = title;
+        this.description = description;
+        this.rows = this.defaultRows();
     }
 
     confidenceUrl() {
@@ -28,8 +28,8 @@ export class DesignCard {
     }
 
     defaultRows() {
-        var defaultRows: DesignRow[] = [];
-        for (var i = 0; i < 5; i++) {
+        const defaultRows: DesignRow[] = [];
+        for (let i = 0; i < 5; i++) {
             defaultRows.push(new DesignRow());
         }
         return defaultRows;

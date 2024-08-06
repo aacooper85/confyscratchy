@@ -6,9 +6,9 @@ export class ConfidenceCard {
     rows: ConfidenceRow[];
 
     constructor(title: string = 'My Card', description: string = 'Card Description', rowArray: number[][]) {
-        this.title = title,
-            this.description = description,
-            this.rows = this.parseArray(rowArray);
+        this.title = title;
+        this.description = description;
+        this.rows = this.parseArray(rowArray);
     }
 
     scratchUrl() {
