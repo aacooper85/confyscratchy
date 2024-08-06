@@ -12,7 +12,7 @@ export class DesignCard {
     }
 
     confidenceUrl() {
-        return `/confidence/${this.base64()}`;
+        return `https://confyscratchy-zeta.vercel.app/confidence/${this.base64()}`;
     }
 
     base64() {

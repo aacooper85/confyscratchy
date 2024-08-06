@@ -1,15 +1,24 @@
 <script lang="ts">
-    import NumberSpinner from "svelte-number-spinner";
-    import { Button, Container, InputGroup, Label } from "@sveltestrap/sveltestrap";
+    import { Col, InputGroup, Label } from "@sveltestrap/sveltestrap";
 
     export let index: number;
     export let total: number;
     export let value: number;
+
+    let nonZero = value > 0;
+    function highlight() {
+        nonZero = value > 0;
+    }
 </script>
 
-<div class="mx-1">
-<Label>{String.fromCharCode(97 + index).toUpperCase()}:</Label>
-<Button outline color="danger" on:click={() => {value--;}} class="btn-sm px-1 border-0">-</Button>
-<NumberSpinner bind:value min="0" max={total} class="w-25 my-1 rounded text-end"/>
-<Button outline color="success" on:click={() => {value++;}} class="btn-sm px-1 border-0">+</Button>
-</div>
+<style>
+    .highlighted {
+        background-color: rgb(229, 255, 209);
+    }
+</style>
+
+<Col class="col-2"><InputGroup class="my-1">
+<Label class="my-auto me-2 font-monospace">{String.fromCharCode(97 + index).toUpperCase()}</Label>
+<input type="number" class="rounded text-center" class:highlighted={nonZero} bind:value min="0" max={total} on:input={highlight} on:change/>
+</InputGroup>
+</Col>

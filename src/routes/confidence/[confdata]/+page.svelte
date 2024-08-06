@@ -11,7 +11,7 @@
 	export let locked = false;
 	let srow: ScratchRow;
 
-	export let lock = () => {
+	let lock = () => {
 		locked = true;
 	};
 	let valid = new Array<boolean>();
@@ -22,22 +22,22 @@
 	}
 </script>
 
-<h3 class="text-center my-3">{card.title}</h3>
+<Container fluid class="bg-light rounded">
+<h2 class="text-center my-3">{card.title}</h2>
+<h4 class="text-center my-3">{card.description}</h4>
 
-<p class="text-center my-3">{card.description}</p>
-
-<Container>
 {#if !locked}
-	<h5><i>Your individual confidence report:</i></h5>
+	<h5 class="m-2 text-muted">Your individual confidence report:</h5>
 	<Form class="p-2">
 		{#each card.rows as row, index}
 			<ConfidenceRow bind:row label={`${index + 1}`} bind:valid={valid[index]}></ConfidenceRow>
 		{/each}
 	</Form>
-	{#if valid.every(Boolean)}
-		<Button class="btn-sm ms-1 btn-light" on:click={() => lock()}>
-			Lock these answers!</Button>
-	{/if}
+	<Container class="text-center">
+		{#if valid.every(Boolean)}
+			<Button class="btn-md btn-success" on:click={lock}>Lock these answers!</Button>
+		{/if}
+	</Container>
 {:else}
 	<h3>Your individual confidence report:</h3>
 	<Form>
