@@ -26,12 +26,12 @@
 
 <p class="text-center my-3">{card.description}</p>
 
-<Container fluid>
+<Container>
 {#if !locked}
 	<h5><i>Your individual confidence report:</i></h5>
 	<Form class="p-2">
 		{#each card.rows as row, index}
-			<ConfidenceRow bind:row label={`${index + 1}.`} bind:valid={valid[index]}></ConfidenceRow>
+			<ConfidenceRow bind:row label={`${index + 1}`} bind:valid={valid[index]}></ConfidenceRow>
 		{/each}
 	</Form>
 	{#if valid.every(Boolean)}
@@ -43,7 +43,7 @@
 	<Form>
 		{#each card.rows as row, index}
 			<p>
-				<b>{`${index + 1}.`}</b>
+				<b>{`${index + 1}`}</b>
 				{#if revealed[index]}
 					{#each row.input as entry, i}
 						{#if row.answer === i}
