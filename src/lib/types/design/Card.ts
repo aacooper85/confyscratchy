@@ -11,8 +11,8 @@ export class DesignCard {
         this.rows = this.defaultRows();
     }
 
-    confidenceUrl() {
-        return `https://confyscratchy-zeta.vercel.app/confidence/${this.base64()}`;
+    confidenceUrl(origin: string) {
+        return `${origin}/confidence/${this.base64()}`;
     }
 
     base64() {

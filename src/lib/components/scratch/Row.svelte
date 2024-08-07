@@ -23,11 +23,11 @@
 <p>
 	<b>{label}</b>
 	{#if revealrow}
-		{#each Array(row.length) as i}
+		{#each Array(row.length) as _, i}
 			<Choice correct={Answer(i)} revealed={revealrow} buttonlabel={String.fromCharCode(97 + i).toUpperCase()}></Choice>
 		{/each}
 	{:else}
-		{#each Array(row.length) as i}
+		{#each Array(row.length) as _, i}
 			<Choice correct={Answer(i)} revealed={row.scratches[i]} buttonlabel={String.fromCharCode(97 + i).toUpperCase()} on:Scratch={Scratch(i)}></Choice>
 		{/each}
 	{/if}

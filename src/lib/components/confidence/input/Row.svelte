@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ConfidenceInput from "./Input.svelte";
+	import ConfidenceChoice from "./Choice.svelte";
 	import { ConfidenceRow } from "$lib/types/confidence/Row";
     import { Row, Col } from "@sveltestrap/sveltestrap";
 
@@ -25,13 +25,13 @@
 	validate();
 </script>
 
-<Row class="border rounded m-3 p-2 shadow">
+<Row class="border rounded m-3 mb-4 p-2 shadow">
 	<Col class="col-2 my-auto text-center"><strong>Question {label}</strong>
 	</Col>
 	<Col class="col-9 border-start border-end">
 		<Row>
-			{#each Array(row.length) as i}
-				<ConfidenceInput on:change={validate} index={i} total={row.length} bind:value={row.input[i]}></ConfidenceInput>
+			{#each Array(row.length) as _, i}
+				<ConfidenceChoice on:change={validate} index={i} total={row.length} bind:value={row.input[i]} />
 			{/each}
 		</Row>
 	</Col>

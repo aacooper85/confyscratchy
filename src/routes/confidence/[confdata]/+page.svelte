@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Button, Container, Form } from "@sveltestrap/sveltestrap";
-	import ConfidenceRow from "$lib/components/confidence/Row.svelte";
+	import InputRow from "$lib/components/confidence/input/Row.svelte";
+	import LockedRow from "$lib/components/confidence/locked/Row.svelte";
 	import { ConfidenceCard } from "$lib/types/confidence/Card";
 	import ScratchRow from "$lib/components/scratch/Row.svelte";
 
@@ -21,27 +22,33 @@
 	}
 </script>
 
-<Container fluid class="bg-light rounded">
-<h2 class="text-center my-3">{card.title}</h2>
+<Container fluid class="mt-4 pb-4 border rounded">
+<h2 class="text-center my-3 pt-2">{card.title}</h2>
 <h4 class="text-center my-3">{card.description}</h4>
 
 {#if !locked}
 	<h5 class="m-2 text-muted">Your individual confidence report:</h5>
 	<Form class="p-2">
 		{#each card.rows as row, index}
-			<ConfidenceRow bind:row label={`${index + 1}`} bind:valid={valid[index]}></ConfidenceRow>
+			<InputRow bind:row label={`${index + 1}`} bind:valid={valid[index]} />
 		{/each}
 	</Form>
-	<Container class="text-center">
-		{#if valid.every(Boolean)}
+	{#if valid.every(Boolean)}
+		<Container class="text-center">
 			<Button class="btn-md btn-success" on:click={lock}>Lock these answers!</Button>
-		{/if}
-	</Container>
+		</Container>
+	{/if}
 {:else}
-	<h3>Your individual confidence report:</h3>
-	<Form>
+	<h5 class="m-2 text-muted">Your locked answers:</h5>
+	<Form class="p-2">
 		{#each card.rows as row, index}
-			<p>
+			{#if revealed[index]}
+				<LockedRow label={`${index + 1}`} bind:row revealed={true} />
+			{:else}
+				<LockedRow label={`${index + 1}`} bind:row revealed={false} />
+			{/if}
+			
+			<!-- <p>
 				<b>{`${index + 1}`}</b>
 				{#if revealed[index]}
 					{#each row.input as entry, i}
@@ -78,7 +85,7 @@
 						/>
 					{/each}
 				{/if}
-			</p>
+			</p> -->
 		{/each}
 	</Form>
 	<h3>Your Team scratchcard:</h3>

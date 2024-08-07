@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import DesignRow from "$lib/components/design/Row.svelte";
 	import { DesignCard } from "$lib/types/design/Card";
 	import { QRCodeImage } from "svelte-qrcode-image";
@@ -6,12 +7,13 @@
 		Button,
 		Col,
 		Container,
-		Form,
 		Input,
 		InputGroup,
 		Label,
 		Row,
 	} from "@sveltestrap/sveltestrap";
+
+	const origin = $page.url.origin;
 
 	let card: DesignCard = new DesignCard(); // includes default title and description
 
@@ -28,7 +30,6 @@
 <h3 class="text-center my-3">Design A New Card</h3>
 
 <Container fluid>
-	<Form>
 		<InputGroup>
 			<Label class="m-2 col-1" for="title">Title:</Label>
 			<Input
@@ -76,7 +77,6 @@
 				<DesignRow bind:row label={`${index + 1}`}></DesignRow>
 			{/each}
 		</Container>
-	</Form>
 </Container>
 <hr />
 
@@ -84,9 +84,9 @@
 <Container class="text-center">
 <h3>Share Your Card</h3>
 
-<a href={card.confidenceUrl()} target="_blank"
+<a href={card.confidenceUrl(origin)} target="_blank"
 	><QRCodeImage
-		text={card.confidenceUrl()}
+		text={card.confidenceUrl(origin)}
 		margin={2}
 		altText="QR Code for Confidence Card URL"
 	/></a

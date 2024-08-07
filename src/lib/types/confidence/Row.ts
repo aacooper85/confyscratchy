@@ -17,6 +17,10 @@ export class ConfidenceRow {
         return sum;
     }
 
+    score() {
+        return this.input[this.answer];
+    }
+
     defaultInput(length: number) {
         return Array(length).fill(0);
     }
