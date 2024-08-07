@@ -1,75 +1,103 @@
 <script lang="ts">
-    import ConfidenceRow from "$lib/components/confidence/Row.svelte";
+	import { Button, Container, Form } from "@sveltestrap/sveltestrap";
+	import InputRow from "$lib/components/confidence/input/Row.svelte";
+	import LockedRow from "$lib/components/confidence/locked/Row.svelte";
 	import { ConfidenceCard } from "$lib/types/confidence/Card";
-	import scratch from "$lib/components/scratch/Row.svelte";
-	import { ScratchCard } from "$lib/types/scratch/Card";
 	import ScratchRow from "$lib/components/scratch/Row.svelte";
-	import castFromConfRow from "$lib/components/scratch/Row.svelte";
 
 	/** @type {import('./$types').PageData} */
 	export let data;
 
 	let card: ConfidenceCard = ConfidenceCard.fromBase64(data.base64string);
 	export let locked = false;
-	let srow: ScratchRow;
-	
-	export let lock = () =>{
-		let t=true;
-		locked=t;
-	}
-	let valid = new Array<boolean>;
-	let revealed = new Array;
-	for (let i =0; i<card.rows.length;i++){
-		valid[i]=false;
-		revealed[i]=false;
-		}
 
+	let lock = () => {
+		locked = true;
+	};
+	let valid = new Array<boolean>();
+	let revealed = [];
+	for (let i = 0; i < card.rows.length; i++) {
+		valid[i] = false;
+		revealed[i] = false;
+	}
 </script>
 
-<h2>{card.title}</h2>
+<Container fluid class="mt-4 pb-4 border rounded">
+<h2 class="text-center my-3 pt-2">{card.title}</h2>
+<h4 class="text-center my-3">{card.description}</h4>
 
-<p>{card.description}</p>
-
-
-{#if (!locked)}
-	<h3>Your individual confidence report:</h3>
-	<form>
+{#if !locked}
+	<h5 class="m-2 text-muted">Your individual confidence report:</h5>
+	<Form class="p-2">
 		{#each card.rows as row, index}
-			<ConfidenceRow bind:row={row} label={`${(index+1)}.`} bind:valid={valid[index]}></ConfidenceRow>
+			<InputRow bind:row label={`${index + 1}`} bind:valid={valid[index]} />
 		{/each}
-	</form>
-	{#if (valid.every(Boolean))}
-	<button on:click={lock()}> Lock these answers!</button>
+	</Form>
+	{#if valid.every(Boolean)}
+		<Container class="text-center">
+			<Button class="btn-md btn-success" on:click={lock}>Lock these answers!</Button>
+		</Container>
 	{/if}
 {:else}
-	<h3>Your individual confidence report:</h3>
-	<form>
+	<Container class="p-2">
+		<h5 class="m-2">Your team scratch card:</h5>
 		{#each card.rows as row, index}
-			<p><b>{`${(index+1)}.`}</b>
-				{#if (revealed[index]) }
-					{#each row.input as entry,i}
-						{#if (row.answer === i)}
-						<b> <input type = "number" value={entry} min="0" max={row.length} style="font-weight: bold;" readonly/></b>
+			<ScratchRow
+				label={`${index + 1}`}
+				crow={row}
+				bind:revealrow={revealed[index]}
+			></ScratchRow>
+		{/each}
+	</Container>
+	<hr>
+	<Container class="p-2">
+		<h5 class="m-2 text-muted">Your individual locked confidence report:</h5>
+		{#each card.rows as row, index}
+			{#if revealed[index]}
+				<LockedRow label={`${index + 1}`} bind:row revealed={true} />
+			{:else}
+				<LockedRow label={`${index + 1}`} bind:row revealed={false} />
+			{/if}
+			
+			<!-- <p>
+				<b>{`${index + 1}`}</b>
+				{#if revealed[index]}
+					{#each row.input as entry, i}
+						{#if row.answer === i}
+							<b>
+								<input
+									type="number"
+									value={entry}
+									min="0"
+									max={row.length}
+									style="font-weight: bold;"
+									readonly
+								/></b
+							>
 						{:else}
-						<input type = "number" value={entry} min="0" max={row.length} readonly/>
+							<input
+								type="number"
+								value={entry}
+								min="0"
+								max={row.length}
+								readonly
+							/>
 						{/if}
 					{/each}
 					score:<b>{row.input[row.answer]}/{row.length}</b>
-				{:else }
-					{#each row.input as entry,i}
-						<input type = "number" value={entry} min="0" max={row.length} readonly/>
+				{:else}
+					{#each row.input as entry}
+						<input
+							type="number"
+							value={entry}
+							min="0"
+							max={row.length}
+							readonly
+						/>
 					{/each}
 				{/if}
-			</p>
-			
+			</p> -->
 		{/each}
-	</form>
-	
-	<h3>Your Team scratchcard:</h3>
-	<form>
-		{#each card.rows as row, index}
-			<ScratchRow label={`${(index+1)}.`} crow={row} bind:revealrow={revealed[index]}></ScratchRow>
-		{/each}
-	</form>
+	</Container>
 {/if}
-	
+</Container>

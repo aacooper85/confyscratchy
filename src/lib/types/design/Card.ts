@@ -6,13 +6,13 @@ export class DesignCard {
     rows: DesignRow[];
 
     constructor(title: string = 'My Card', description: string = 'Card Description') {
-        this.title = title,
-        this.description = description,
+        this.title = title;
+        this.description = description;
         this.rows = this.defaultRows();
     }
 
-    confidenceUrl() {
-        return `/confidence/${this.base64()}`;
+    confidenceUrl(origin: string) {
+        return `${origin}/confidence/${this.base64()}`;
     }
 
     base64() {
@@ -28,18 +28,18 @@ export class DesignCard {
     }
 
     defaultRows() {
-        var defaultRows: DesignRow[] = [];
-        for (var i = 0; i < 5; i++) {
+        const defaultRows: DesignRow[] = [];
+        for (let i = 0; i < 5; i++) {
             defaultRows.push(new DesignRow());
         }
         return defaultRows;
     }
-	
-	addRow() {
-        this.rows = [...this.rows, new DesignRow(5,0)]
+
+    addRow() {
+        this.rows = [...this.rows, new DesignRow(5, 0)]
     }
-	
-  removeRow() {
-        this.rows = this.rows.slice(0,this.rows.length-1)
+
+    removeRow() {
+        this.rows = this.rows.slice(0, this.rows.length - 1)
     }
 }

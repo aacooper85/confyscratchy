@@ -6,8 +6,8 @@ export class ConfidenceCard {
     rows: ConfidenceRow[];
 
     constructor(title: string = 'My Card', description: string = 'Card Description', rowArray: number[][]) {
-        this.title = title,
-        this.description = description,
+        this.title = title;
+        this.description = description;
         this.rows = this.parseArray(rowArray);
     }
 
@@ -35,5 +35,4 @@ export class ConfidenceCard {
     parseArray(rowArray: number[][]) {
         return rowArray.map(pair => new ConfidenceRow(pair[0], pair[1]));
     }
-	
 }

@@ -12,17 +12,20 @@ export class ConfidenceRow {
     }
 
     sum() {
-        var sum = 0;
+        let sum = 0;
         this.input.forEach(entry => sum += entry);
         return sum;
+    }
+
+    score() {
+        return this.input[this.answer];
     }
 
     defaultInput(length: number) {
         return Array(length).fill(0);
     }
-	
-	castToScratchRow(){
-		let newrow= new ScratchRow(this.length,this.answer);
-		return newrow;
-	}
+
+    castToScratchRow() {
+        return new ScratchRow(this.length, this.answer);
+    }
 }
