@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Col, InputGroup, Label } from "@sveltestrap/sveltestrap";
+    import { Col, Label } from "@sveltestrap/sveltestrap";
 
     export let index: number;
     export let value: number;
@@ -7,7 +7,7 @@
     export let correct: boolean;
 
     let style = () => {
-        const base = 'my-auto font=monospace px-1';
+        const base = 'my-auto font-monospace px-1';
         if (revealed) {
             if (correct) {
                 return base.concat(' text-light bg-success rounded');

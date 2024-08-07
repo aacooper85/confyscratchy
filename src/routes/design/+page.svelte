@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { copyText } from 'svelte-copy';
 	import DesignRow from "$lib/components/design/Row.svelte";
 	import { DesignCard } from "$lib/types/design/Card";
 	import { QRCodeImage } from "svelte-qrcode-image";
@@ -10,6 +11,7 @@
 		Input,
 		InputGroup,
 		Label,
+		Modal,
 		Row,
 	} from "@sveltestrap/sveltestrap";
 
@@ -25,6 +27,9 @@
 		card.removeRow();
 		card = card;
 	};
+
+	let open = false;
+  	const toggle = () => (open = !open);
 </script>
 
 <h3 class="text-center my-3">Design A New Card</h3>
@@ -78,17 +83,19 @@
 			{/each}
 		</Container>
 </Container>
-<hr />
-
-<!-- TO DO make the Share section a Collapsible element -->
-<Container class="text-center">
-<h3>Share Your Card</h3>
-
-<a href={card.confidenceUrl(origin)} target="_blank"
-	><QRCodeImage
-		text={card.confidenceUrl(origin)}
-		margin={2}
-		altText="QR Code for Confidence Card URL"
-	/></a
->
+<Container class="text-center pt-3">
+	<Button color="primary" on:click={toggle}>
+		Share Your Card
+	  </Button>
+	<Modal class="text-center" body header="Share Your Card" isOpen={open} {toggle}>
+		<p>Save or copy this QR code by right-clicking on the image.</p>
+		<p>Users can also scan this code on their device from your screen.</p>
+		<QRCodeImage
+				text={card.confidenceUrl(origin)}
+				altText="QR Code for Card URL"
+			/>
+		<br><br>
+		<p>Or share the plain text URL:</p>
+		<Button color="primary" on:click={() => copyText(card.confidenceUrl(origin))}>Copy URL to Clipboard</Button>
+	</Modal>
 </Container>

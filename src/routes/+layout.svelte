@@ -22,7 +22,7 @@
 	<slot></slot>
 </Container>
 
-<Container class="text-center">
+<Container class="text-center mt-1 mb-4">
 	<hr>
-	<p><a href="/credits">Credits</a></p>
+	<a href="/credits">Credits</a>
 </Container>

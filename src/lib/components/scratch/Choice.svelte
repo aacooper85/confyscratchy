@@ -1,12 +1,14 @@
 <script lang="ts">
 	import { createEventDispatcher } from "svelte";
-	import { Button } from "@sveltestrap/sveltestrap";
+	import { Button, Col } from "@sveltestrap/sveltestrap";
 
 	export let buttonlabel: string;
 	export let correct: boolean;
 	export let revealed: boolean;
 
-	export let glyph = () => {
+	const style = "border rounded my-auto font-monospace p-1";
+
+	let glyph = () => {
 		if (revealed) {
 			if (correct) {
 				return "✅";
@@ -23,8 +25,10 @@
 	}>();
 </script>
 
-{#if revealed}
-	<Button class="btn-sm ms-1 btn-light" disabled>{buttonlabel}{glyph()}</Button>
-{:else}
-	<Button class="btn-sm ms-1 btn-light" on:click={() => dispatch("Scratch")}>{buttonlabel}{glyph()}</Button>
-{/if}
+<Col class="col-2">
+	{#if revealed}
+		<Button outline color="dark" class={style} disabled>{buttonlabel} {glyph()}</Button>
+	{:else}
+		<Button outline color="dark" class={style} on:click={() => dispatch("Scratch")}>{buttonlabel} {glyph()}</Button>
+	{/if}
+</Col>

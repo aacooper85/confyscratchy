@@ -39,8 +39,19 @@
 		</Container>
 	{/if}
 {:else}
-	<h5 class="m-2 text-muted">Your locked answers:</h5>
-	<Form class="p-2">
+	<Container class="p-2">
+		<h5 class="m-2">Your team scratch card:</h5>
+		{#each card.rows as row, index}
+			<ScratchRow
+				label={`${index + 1}`}
+				crow={row}
+				bind:revealrow={revealed[index]}
+			></ScratchRow>
+		{/each}
+	</Container>
+	<hr>
+	<Container class="p-2">
+		<h5 class="m-2 text-muted">Your individual locked confidence report:</h5>
 		{#each card.rows as row, index}
 			{#if revealed[index]}
 				<LockedRow label={`${index + 1}`} bind:row revealed={true} />
@@ -87,16 +98,6 @@
 				{/if}
 			</p> -->
 		{/each}
-	</Form>
-	<h3>Your Team scratchcard:</h3>
-	<Form>
-		{#each card.rows as row, index}
-			<ScratchRow
-				label={`${index + 1}.`}
-				crow={row}
-				bind:revealrow={revealed[index]}
-			></ScratchRow>
-		{/each}
-	</Form>
+	</Container>
 {/if}
 </Container>
